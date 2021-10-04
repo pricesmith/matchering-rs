@@ -2,7 +2,7 @@ mod dsp;
 
 fn process(
     &str: target,
-    &str: reference,
+    string: reference,
     list: results,
     Config: config,
     Result: preview_target,

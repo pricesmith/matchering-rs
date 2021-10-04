@@ -1,5 +1,6 @@
 extern crate wasm_bindgen;
 extern crate ndarray;
+
 use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen]
