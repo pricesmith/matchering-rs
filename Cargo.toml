@@ -14,3 +14,4 @@ crate-type = ["cdylib"]
 wasm-bindgen = "0.2.63"
 ndarray = "0.15.3"
 ndarray-image = "0.3.0"
+samplerate = "0.2.4"
