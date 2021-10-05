@@ -11,6 +11,9 @@ pub mod misc_helpers;
 pub mod utils;
 pub mod defaults;
 pub mod dsp;
+pub mod statsmodel;
+pub mod stage_helpers;
+pub mod limiter;
 
 // capture and implement all needed js functions here
 #[wasm_bindgen]

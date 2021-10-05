@@ -1,6 +1,6 @@
+use statsmodel::lowess;
 use ndarray::Array;
 use num_traits::sign;
-use statsmodel::lowess::Lowess;
 use Option;
 
 const MONO: u32 = 1;
