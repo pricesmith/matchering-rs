@@ -1,5 +1,6 @@
 use ndarray::Array;
 use num_traits::sign;
+use statsmodel::lowess::Lowess;
 use Option;
 
 const MONO: u32 = 1;
@@ -54,7 +55,6 @@ fn get_max(arr: ndarray) {
 fn count_max_peaks(arr: ndarray::Array) -> (f32, i64) {
     let max_value = sign::abs(arr);
 }
-
 // def count_max_peaks(array: np.ndarray) -> (float, int):
 //     max_value = np.abs(array).max()
 //     max_count = np.count_nonzero(
@@ -93,8 +93,12 @@ fn normalize(
 }
 
 fn smooth_lowess(arr: ndarray::Array, frac: f32, it: i64, delta: f32) -> ndarray::Array {
-
+    
 }
+// def smooth_lowess(array: np.ndarray, frac: float, it: int, delta: float) -> np.ndarray:
+//     return sm.nonparametric.lowess(
+//         array, np.linspace(0, 1, len(array)), frac=frac, it=it, delta=delta
+//     )[:, 1]
 
 fn clip(arr: ndarray::Array, to: Option<f32> = 1) -> ndarray::Array {
 
