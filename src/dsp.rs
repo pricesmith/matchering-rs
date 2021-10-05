@@ -1,30 +1,46 @@
 extern crate ndarray;
+extern crate num_traits;
 
-use ndarray;
+use ndarray::Array::zeros;
+use num_traits::sign::abs;
 use Option;
 
-pub fn size(arr: ndarray::Array) -> usize {
-    return arr.len_of(Axis(0));
+const MONO: u32 = 1;
+const STEREO: u32 = 2;
+
+// https://docs.rs/ndarray/0.12.1/ndarray/doc/ndarray_for_numpy_users/index.html#shape-and-strides
+
+//
+pub fn size(arr: ndarray::Array::<i64>) -> usize {
+    return arr.len_of(Axis(0)); // [Todo] check/test
 }
 
+//
 pub fn channel_count(arr: ndarray::Array) -> usize {
     return arr.len_of(Axis(1));
 }
 
+//
 fn is_mono(arr: ndarray::Array) -> bool {
-
+    return arr.len_of(Axis(1)) == MONO;
 }
 
+//
 fn is_stereo(arr: ndarray::Array) -> bool {
-
+    return arr.len_of(Axis(1)) == STEREO;
 }
 
+// ?
 fn is_1d(arr: ndarray::Array) -> bool {
-
+    return arr.dim().len() == 1; // [Todo] check syntax and methods - len(arr.shape())?
 }
 
+//
 fn mono_to_stereo(arr: ndarray::Array) -> ndarray::Array {
+    ndarray::arr2(arr);
+    assert!(is_stereo(arr));
 
+    return arr;
 }
 
 fn count_max_peaks(arr: ndarray::Array) -> (f32, i64) {
@@ -99,31 +115,6 @@ fn maximum_filter1d(arr: ndarray::Array) -> ndarray::Array{
 
 // import numpy as np
 // import statsmodels.api as sm
-
-
-// def size(array: np.ndarray) -> int:
-//     return array.shape[0]
-
-
-// def channel_count(array: np.ndarray) -> int:
-//     return array.shape[1]
-
-
-// def is_mono(array: np.ndarray) -> bool:
-//     return array.shape[1] == 1
-
-
-// def is_stereo(array: np.ndarray) -> bool:
-//     return array.shape[1] == 2
-
-
-// def is_1d(array: np.ndarray) -> bool:
-//     return len(array.shape) == 1
-
-
-// def mono_to_stereo(array: np.ndarray) -> np.ndarray:
-//     return np.repeat(array, repeats=2, axis=1)
-
 
 // def count_max_peaks(array: np.ndarray) -> (float, int):
 //     max_value = np.abs(array).max()

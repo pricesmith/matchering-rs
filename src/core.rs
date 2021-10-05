@@ -1,6 +1,6 @@
 mod dsp;
 
-fn process(
+pub fn process(
     &str: target,
     string: reference,
     list: results,

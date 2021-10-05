@@ -1,16 +1,7 @@
-fn type_of<T>(_: T) -> &'static str {
-    type_name::<T>()
-}
-
 use Option;
-use std::any::type_name;
 use std::f64::consts::E;
 use conditional::conditional; 
 use more_asserts;
-
-fn type_of<T>(_: T) -> &'static str {
-    type_name::<T>()
-}
 
 // [Todo] Change conditionals checks to assertions
 // [Todo] Change conditionals to terinary conditionals
@@ -90,6 +81,7 @@ impl LimiterConfig {
     }
 }
 
+// [Todo] fix - make optional!
 pub struct Config {
         internal_sample_rate: u32,
         max_length: f32,
@@ -101,7 +93,7 @@ pub struct Config {
         rms_correction_steps: u32,
         clipping_samples_threshold: u32,
         limited_samples_threshold: u32,
-        allow_equality: bool,,
+        allow_equality: bool,
         lowess_frac: f32,
         lowess_it: u32,
         lowess_delta: f32,
@@ -142,7 +134,8 @@ impl Config {
         if internal_sample_rate.isNone() {
             let internal_sample_rate = 4100;
         } else if internal_sample_rate != 4100 {
-            // [todo] add - console warning about other internal sample rates not being tested
+            // [Todo] add - console warning about other
+            // internal sample rates not being tested.
         }
         self.internal_sample_rate = internal_sample_rate;
 
@@ -213,50 +206,72 @@ impl Config {
         self.limited_samples_threshold = limited_samples_threshold;
 
         // check and set allow_equality
-        
+        if allow_equality.isNone() {
+            let allow_equality = false;
+        }
+        self.allow_equality = allow_equality;
 
-        // allow_equality: bool = False,
-        // lowess_frac: float = 0.0375,
-        // lowess_it: int = 0,
-        // lowess_delta: float = 0.001,
-        // preview_size: float = 30,
-        // preview_analysis_step: float = 5,
-        // preview_fade_size: float = 1,
-        // preview_fade_coefficient: float = 8,
-        // temp_folder: str = None,
-        // limiter: LimiterConfig = LimiterConfig(),
+        // check and set lowess_frac
+        if lowess_frac.isNone() {
+            let lowess_frac = 0.0375;
+        }
+        assert_gt!(lowess_frac, 0);
+        self.lowess_frac = lowess_frac;
 
+        // check lowess_it
+        if lowess_it.isNone() {
+            let lowess_it = 0;
+        }
+        assert_ge!(lowess_it, 0);
+
+        // check lowess_delta
+        if lowess_delta.isNone() {
+            let lowess_delta = 0.001;
+        }
+        assert_ge!(lowess_delta, 0);
+
+        // set lowess_frac, lowess_it, lowess_delta
+        self.lowess_frac = lowess_frac;
+        self.lowess_it = lowess_it;
+        self.lowess_delta = lowess_delta;
+
+        // check preview_size
+        if preview_size.isNone() {
+            let preview_size = 30;
+        }
+        assert_gt!(preview_size, 5);
+
+        // check preview_analysis_step
+        if preview_analysis_step.isNone() {
+            let preview_analysis_step = 5;
+        }
+        assert_gt!(preview_analysis_step, 1);
+
+        // check preview_fade_size
+        if preview_fade_size.isNone() {
+            let preview_fade_size = 1;
+        }
+        assert_gt!(preview_fade_size, 0);
+
+        // check preview_fade_coefficient
+        if preview_fade_coefficient.isNone() {
+            let preview_fade_coefficient = 8;
+        }
+        assert_ge!(preview_fade_coefficient, 2);
+
+        // set preview_size, preview_analysis_step, preview_fade_size, preview_fade_coefficient
+        self.preview_size = preview_size * internal_sample_rate;
+        self.preview_analysis_step = preview_analysis_step * internal_sample_rate;
+        self.preview_fade_size = preview_fade_size * internal_sample_rate;
+        self.preview_fade_coefficient = preview_fade_coefficient;
+
+        // remove temp_folder
+        temp_folder = None;
+
+        // ensure temp_folder is removed
+        assert!(temp_folder.is_none());
+
+        // set limiter
+        self.limiter = LimiterConfig.new();
     }
 }
-
-
-// import math
-// from .log import debug
-
-// class Config:
-
-//         assert isinstance(allow_equality, bool)
-//         self.allow_equality = allow_equality
-
-//         assert lowess_frac > 0
-//         assert lowess_it >= 0
-//         assert lowess_delta >= 0
-//         assert isinstance(lowess_it, int)
-//         self.lowess_frac = lowess_frac
-//         self.lowess_it = lowess_it
-//         self.lowess_delta = lowess_delta
-
-//         assert preview_size > 5
-//         assert preview_analysis_step > 1
-//         assert preview_fade_size > 0
-//         assert preview_fade_coefficient >= 2
-//         self.preview_size = preview_size * internal_sample_rate
-//         self.preview_analysis_step = preview_analysis_step * internal_sample_rate
-//         self.preview_fade_size = preview_fade_size * internal_sample_rate
-//         self.preview_fade_coefficient = preview_fade_coefficient
-
-//         assert temp_folder is None or isinstance(temp_folder, str)
-//         self.temp_folder = temp_folder
-
-//         assert isinstance(limiter, LimiterConfig)
-//         self.limiter = limiter
