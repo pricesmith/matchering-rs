@@ -11,8 +11,9 @@
         []  Test at some point.  
 47. []  
   
-## Modules Checklist  
-[]  dsp     - 40%  
+## Modules Checklist
+    file    fns impl'd
+[]  dsp     - 5/19  
 []  utils   -  
 []  results -  
   
