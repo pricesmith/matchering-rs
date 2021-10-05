@@ -1,1 +1,0 @@
-window.ALL_CRATES = ["bumpalo","bytemuck","byteorder","cfg_if","color_quant","lazy_static","log","matrixmultiply","num_traits","proc_macro2","rawpointer","unicode_xid","wasm_bindgen_shared"];
