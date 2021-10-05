@@ -10,6 +10,7 @@ pub mod types;
 pub mod misc_helpers;
 pub mod utils;
 pub mod defaults;
+pub mod dsp;
 
 // capture and implement all needed js functions here
 #[wasm_bindgen]

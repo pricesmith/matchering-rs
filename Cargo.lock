@@ -145,7 +145,6 @@ dependencies = [
  "ndarray 0.15.3",
  "ndarray-image",
  "num-traits",
- "proc-macro2",
  "samplerate",
  "wasm-bindgen",
  "wee_alloc",

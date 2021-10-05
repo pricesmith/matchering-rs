@@ -1,51 +1,66 @@
-extern crate ndarray;
-extern crate num_traits;
-
-use ndarray::Array::zeros;
-use num_traits::sign::abs;
+use ndarray::Array;
+use num_traits::sign;
 use Option;
 
 const MONO: u32 = 1;
 const STEREO: u32 = 2;
 
+// ndarray Documentation for numpy users:
+//
 // https://docs.rs/ndarray/0.12.1/ndarray/doc/ndarray_for_numpy_users/index.html#shape-and-strides
 
-//
 pub fn size(arr: ndarray::Array::<i64>) -> usize {
-    return arr.len_of(Axis(0)); // [Todo] check/test
+    arr.len_of(Axis(0))
 }
 
-//
 pub fn channel_count(arr: ndarray::Array) -> usize {
-    return arr.len_of(Axis(1));
+    arr.len_of(Axis(1))
 }
 
-//
 fn is_mono(arr: ndarray::Array) -> bool {
-    return arr.len_of(Axis(1)) == MONO;
+    arr.len_of(Axis(1)) == MONO
 }
 
-//
 fn is_stereo(arr: ndarray::Array) -> bool {
-    return arr.len_of(Axis(1)) == STEREO;
+    arr.len_of(Axis(1)) == STEREO
 }
 
-// ?
 fn is_1d(arr: ndarray::Array) -> bool {
-    return arr.dim().len() == 1; // [Todo] check syntax and methods - len(arr.shape())?
+    arr.ndim() == 1
 }
 
-//
+// TODO: check syntax and method - "ndarray::arr2(arr);"
 fn mono_to_stereo(arr: ndarray::Array) -> ndarray::Array {
     ndarray::arr2(arr);
     assert!(is_stereo(arr));
 
-    return arr;
+    arr
 }
 
+// TODO: Fix and implement
+fn get_max(arr: ndarray) {
+    let max = 0;
+
+    let d = arr.ndim();
+    for d in arr {
+        for i in arr[d] {
+            if arr[d][i] > max {
+                max = arr[d][i]
+            }
+        }
+    }
+}
+//
 fn count_max_peaks(arr: ndarray::Array) -> (f32, i64) {
-
+    let max_value = sign::abs(arr);
 }
+
+// def count_max_peaks(array: np.ndarray) -> (float, int):
+//     max_value = np.abs(array).max()
+//     max_count = np.count_nonzero(
+//         np.logical_or(np.isclose(array, max_value), np.isclose(array, -max_value))
+//     )
+//     return max_value, max_count
 
 fn lr_to_ms(arr: ndarray::Array) -> (ndarray::Array, ndarray::Array) {
 
@@ -110,7 +125,6 @@ fn fade(arr: ndarray::Array, fade_size: i64) -> ndarray::Array {
 }
 
 fn maximum_filter1d(arr: ndarray::Array) -> ndarray::Array{
-
 }
 
 // import numpy as np

@@ -1,12 +1,15 @@
-use conditional::conditional;
+use conditional;
 
 use std::fmt;
 use std::f64::consts::E;
 
+// TODO: ios and cellular devices?
+// make dir in browser cache?
 fn get_temp_folder() {
     // [?] how would this work on ios device?
 }
 
+// TODO: Implement
 fn random_str(size: Option<i64>) {
     if size == None { // [?] should I use match size { None => size = 16 } here?
         size = 16;
@@ -14,6 +17,7 @@ fn random_str(size: Option<i64>) {
     // [todo] implement - generate random string of ascii lowercase and digits of k len
 }
 
+// TODO: Implement
 fn random_file(prefix: Option<&str>, extension: Option<&str>) -> &str {
     if prefix.is_none() {
         let prefix = "";
@@ -26,13 +30,15 @@ fn random_file(prefix: Option<&str>, extension: Option<&str>) -> &str {
     return fmt!("{}{}.{}", prefix, random_str(), extension); // [todo] create random_str func
 }
 
-fn __to_db_int(float: value) -> float {
-    return 20 * math.log10(value); // [todo] fix - do this
+fn __to_db_int(val: f64) -> f64 {
+    20 * val.log10()
 }
 
-fn to_db(value: float) -> str {
-    return fmt!("{} dB", __to_db_int(value):.4f); // [todo] fix/implement - 4 digits of precision
+fn to_db(val: f64) -> &str {
+    return fmt!("{} dB", __to_db_int(val).4f); // [todo] fix/implement - 4 digits of precision
 }
+// def to_db(value: float) -> str:
+//     return f"{__to_db_int(value):.4f} dB"
 
 fn ms_to_samples(value: f32, sample_rate: int) -> int{
     return int(value as f64 * sample_rate as f64 * 1E-3);
