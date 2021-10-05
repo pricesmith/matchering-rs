@@ -30,10 +30,12 @@ fn random_file(prefix: Option<&str>, extension: Option<&str>) -> &str {
     return fmt!("{}{}.{}", prefix, random_str(), extension); // [todo] create random_str func
 }
 
+// TODO
 fn __to_db_int(val: f64) -> f64 {
     20 * val.log10()
 }
 
+// TODO
 fn to_db(val: f64) -> &str {
     return fmt!("{} dB", __to_db_int(val).4f); // [todo] fix/implement - 4 digits of precision
 }
@@ -45,13 +47,13 @@ fn ms_to_samples(value: f32, sample_rate: int) -> int{
 }
 
 fn make_odd(value: int) -> int {
-    return conditional!((value / 2 == 0) ? value + 1 : value); // [todo] check
+    return conditional!((value / 2 == 0) ? value + 1 : value);
 }
 
+// TODO:
 fn time_str(length: int, sample_rate: int) -> str {
     return str(timedelta(seconds = (length as float / sample_rate as float).floor())); // [todo] implement/check/fix
 }
-
 
 // import os
 // import random

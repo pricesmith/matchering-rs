@@ -1,13 +1,87 @@
-use extern crate ndarray;
-use extern crate ndarray_image;
+use ndarray::Array;
+use ndarray_image;
+use num_traits::sign;
+use more_asserts::{self, assert_ge};
 
+// TODO: lazy implementation -- probably wrong
+fn normalize_axis_index(axis: u32, arr: Array) {
+    sign::abs(axis)
+}
+
+fn maximum_filter1d(
+    input: ndarray::Array, 
+    size: u32, 
+    axis: u32, 
+    output: Optional<ndarray::Array>,
+    mode: &str,
+    cval: f64,
+    origin: i32
+) -> i64 {
+    // TODO: Check and set optionals
+    //
+    //
+    assert_ge!(axis, 0);
+    assert!(-size <= axis <= size);
+    normalize_axis_index(axis, input.ndim())
+    // if size < 1:
+    // raise RuntimeError('incorrect filter size')
+
+    
+}
+
+// def maximum_filter1d(input, size, axis=-1, output=None,
+//     mode="reflect", cval=0.0, origin=0):
+
+// output = _ni_support._get_output(output, input)
+// if (size // 2 + origin < 0) or (size // 2 + origin >= size):
+// raise ValueError('invalid origin')
+// mode = _ni_support._extend_mode_to_code(mode)
+// _nd_image.min_or_max_filter1d(input, size, axis, output, mode, cval,
+//                  origin, 0)
+// return output
+
+// def maximum_filter1d(input, size, axis=-1, output=None,
+//     mode="reflect", cval=0.0, origin=0):
+// Maximum-filtered array with same shape as input.
+// None if `output` is not None
+// Notes
+// -----
+// This function implements the MAXLIST algorithm [1]_, as described by
+// Richard Harter [2]_, and has a guaranteed O(n) performance, `n` being
+// the `input` length, regardless of filter size.
+// References
+// ----------
+// .. [1] http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.42.2777
+// .. [2] http://www.richardhartersworld.com/cri/2001/slidingmin.html
+// Examples
+// --------
+// >>> from scipy.ndimage import maximum_filter1d
+// >>> maximum_filter1d([2, 8, 0, 4, 1, 9, 9, 0], size=3)
+// array([8, 8, 8, 4, 9, 9, 9, 9])
+// """
+// input = numpy.asarray(input)
+// if numpy.iscomplexobj(input):
+// raise TypeError('Complex type not supported')
+// axis = normalize_axis_index(axis, input.ndim)
+// if size < 1:
+// raise RuntimeError('incorrect filter size')
+// output = _ni_support._get_output(output, input)
+// if (size // 2 + origin < 0) or (size // 2 + origin >= size):
+// raise ValueError('invalid origin')
+// mode = _ni_support._extend_mode_to_code(mode)
+// _nd_image.min_or_max_filter1d(input, size, axis, output, mode, cval,
+//                  origin, 0)
+// return output
+
+// TODO: fix!
 fn __sliding_window_fast(s
-    arr: ndarray::Array, window_size: int, mode: Option<&str> = "attack"
+    arr: ndarray::Array, window_size: int, mode: Option<&str>
 ) -> ndarray::Array {
-    if mode.is_some() && mode == "attack" {
-        window_size = make_odd(window_size);
-        return maximum_filter1d(array, size = (2 * window_size - 1));
+    if mode.is_none() {
+        let mode = "attack";
     }
+    window_size = make_odd(window_size);
+    // maximum_filter1d(array, size = (2 * window_size - 1))
 }
 
 

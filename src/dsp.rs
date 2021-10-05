@@ -1,4 +1,3 @@
-use statsmodel::lowess;
 use ndarray::Array;
 use num_traits::sign;
 use Option;

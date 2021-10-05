@@ -1,3 +1,6 @@
+/// This is a rough, rust-newb transcription of some statistical processes...
+/// Please refactor.
+
 pub struct Lowess {
     pub y_es: Vec<f64>,
 }
@@ -24,6 +27,9 @@ impl Lowess {
     }
 }
 
+/// Pretty sure this is a pointlessly complicated function if it's
+/// simply powing floats. 
+/// you probably want https://doc.rust-lang.org/std/primitive.f64.html#method.powi instead
 fn pow2<T>(x: T) -> T
 where
     T: std::ops::Mul<T, Output = T> + Copy,
@@ -238,7 +244,7 @@ fn update_neighbourhood(x: &[f64], n: usize, i: usize, nleft: &mut usize, nright
     }
 }
 
-// not sure at all I transcribed this correctly.
+// Not sure at all I transcribed this correctly.
 fn update_indices<'a>(
     x: &[f64],
     n: usize,
@@ -301,7 +307,10 @@ fn calculate_residual_weights(n: usize, weights: &[f64], resid_weights: &mut [f6
         i += 1;
     }
 
-    // this changes the order of the slice. does this matter?
+    // This one's a real footgun. Fix, fix, fix...
+    // - Mutates the input
+    // - Sorting by floats is not good because of NaN
+    // - What does this function do if we give it an empty slice as input?
     fn median(numbers: &mut [f64]) -> f64 {
         numbers.sort_by(|a, b| a.partial_cmp(b).unwrap());
         let mid = numbers.len() / 2;

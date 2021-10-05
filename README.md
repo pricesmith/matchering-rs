@@ -1,3 +1,17 @@
+# About
+This 
+
+## Cards
+### Getting it Up and Running
+[]--Web Setup
+    []--Setup web io
+    []--Setup web audio
+[]--
+
+### Refacter... Restructure?
+[]--
+
+
 # TODO  
 0.  []  
 1.  []  Implement dsp.rs - In Progress  
@@ -12,10 +26,15 @@
 47. []  
   
 ## Modules Checklist
-    file    fns impl'd
-[]  dsp     - 5/19  
-[]  utils   -  
-[]  results -  
+    file        fns impl'd
+[]  core        - 2%
+[]  dsp         - 30%
+[]  hyrax       - 5%
+[]  utils       - 16%
+[]  results     - 76%
+[]  saver       - 0%    Not sure if needed if running in web
+[]  stages      - 0%
+[]  checkers    - 0%
   
 ## Questions & Blockers  
 0.  []  

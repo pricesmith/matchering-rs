@@ -1,4 +1,4 @@
-use extern crate ndarray;
+use ndarray;
 
 
 fn __average_fft(

@@ -65,7 +65,7 @@ fn check() {
 
 
 
-
+/*
 import numpy as np
 from resampy import resample
 
@@ -188,3 +188,4 @@ def check(
 def check_equality(target: np.ndarray, reference: np.ndarray) -> None:
     if target.shape == reference.shape and np.allclose(target, reference):
         raise ModuleError(Code.ERROR_TARGET_EQUALS_REFERENCE)
+*/
