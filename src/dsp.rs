@@ -1,11 +1,13 @@
-use extern crate ndarray;
+extern crate ndarray;
+
+use ndarray;
 use Option;
 
 pub fn size(arr: ndarray::Array) -> usize {
     return arr.len_of(Axis(0));
 }
 
-pub fn channel_count(arr: ndarray::Array) -> i64 {
+pub fn channel_count(arr: ndarray::Array) -> usize {
     return arr.len_of(Axis(1));
 }
 

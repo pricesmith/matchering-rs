@@ -1,8 +1,10 @@
-use extern crate ndarray;
-use extern crate samplerate::samplerate;
+extern crate ndarray;
+extern crate samplerate; 
 
-use mod dsp;
-use mod utils;
+use samplerate::samplerate;
+
+mod dsp;
+mod audio_utils;
 
 // WebAudio
 fn __check_sample_rate(

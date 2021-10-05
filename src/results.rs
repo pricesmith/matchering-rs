@@ -34,11 +34,11 @@ impl Result {
         }
     }
 
-    pub fn pcm16(file) -> Result {
+    pub fn pcm16(file: &str) -> Result {
         return Result.new(file, "PCM_16");
     }
 
-    pub fn pcm24(file) -> Result {
+    pub fn pcm24(file: &str) -> Result {
         return Result.new(file, "PCM_24");
     }
 }
